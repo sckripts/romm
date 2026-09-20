@@ -5,11 +5,6 @@
 // tabs, tab panel) stacked in a flex-1 column on the right. Thin
 // orchestrator — data + tab state live here, every visual piece is a
 // sub-component under components/GameDetails/.
-import { RTabNav, type RTabNavItem } from "@v2/lib";
-import { storeToRefs } from "pinia";
-import { computed, ref, watch } from "vue";
-import { useI18n } from "vue-i18n";
-import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import type { IGDBRelatedGame } from "@/__generated__";
 import romApi from "@/services/api/rom";
 import storeAuth from "@/stores/auth";
@@ -19,10 +14,10 @@ import AchievementsTab from "@/v2/components/GameDetails/AchievementsTab.vue";
 import CoverColumn from "@/v2/components/GameDetails/CoverColumn.vue";
 import FilesTab from "@/v2/components/GameDetails/FilesTab/FilesTab.vue";
 import GameHeader from "@/v2/components/GameDetails/GameHeader.vue";
-import MultiplayerSessions from "@/v2/components/GameDetails/MultiplayerSessions.vue";
 import type { InfoGridSection } from "@/v2/components/GameDetails/InfoGrid.vue";
 import MediaTab from "@/v2/components/GameDetails/MediaTab.vue";
 import MetadataTab from "@/v2/components/GameDetails/MetadataTab.vue";
+import MultiplayerSessions from "@/v2/components/GameDetails/MultiplayerSessions.vue";
 import NotesTab from "@/v2/components/GameDetails/NotesTab.vue";
 import OverviewTab from "@/v2/components/GameDetails/OverviewTab.vue";
 import PatcherTab from "@/v2/components/GameDetails/PatcherTab.vue";
@@ -32,6 +27,11 @@ import { usePageTitle } from "@/v2/composables/usePageTitle";
 import { useRightStickScroll } from "@/v2/composables/useRightStickScroll";
 import { useWebpSupport } from "@/v2/composables/useWebpSupport";
 import { isRomVerified } from "@/v2/utils/romVerification";
+import { RTabNav, type RTabNavItem } from "@v2/lib";
+import { storeToRefs } from "pinia";
+import { computed, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
+import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
 const router = useRouter();
