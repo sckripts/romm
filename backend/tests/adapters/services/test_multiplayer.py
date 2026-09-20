@@ -1,6 +1,7 @@
 import io
 import json
 import urllib.error
+from email.message import Message
 from unittest.mock import patch
 
 import pytest
@@ -72,7 +73,7 @@ def test_preserves_provider_http_error_body():
         "http://provider/v1/sessions",
         409,
         "Conflict",
-        {},
+        Message(),
         io.BytesIO(b'{"error":"full"}'),
     )
     with patch(

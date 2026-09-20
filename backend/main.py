@@ -42,9 +42,9 @@ from endpoints.feeds import router as feeds_router
 from endpoints.firmware import router as firmware_router
 from endpoints.heartbeat import router as heartbeat_router
 from endpoints.logs import router as logs_router
+from endpoints.multiplayer import router as multiplayer_router
 from endpoints.music import router as music_router
 from endpoints.music_playlists import router as music_playlists_router
-from endpoints.multiplayer import router as multiplayer_router
 from endpoints.netplay import router as netplay_router
 from endpoints.permissions import router as permissions_router
 from endpoints.platform import router as platform_router

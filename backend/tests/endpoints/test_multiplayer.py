@@ -5,7 +5,6 @@ from uuid import uuid4
 
 import pytest
 from fastapi import HTTPException
-
 from main import app as _app  # noqa: F401 - initialize RomM's endpoint import order
 
 multiplayer = import_module("endpoints.multiplayer")

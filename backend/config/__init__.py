@@ -331,9 +331,9 @@ STREAMING_SAVE_TIMEOUT: Final[int] = safe_int(
 EXTERNAL_MULTIPLAYER_ENABLED: Final[bool] = safe_str_to_bool(
     _get_env("EXTERNAL_MULTIPLAYER_ENABLED")
 )
-EXTERNAL_MULTIPLAYER_URL: Final[str] = _get_env(
-    "EXTERNAL_MULTIPLAYER_URL", ""
-).rstrip("/")
+EXTERNAL_MULTIPLAYER_URL: Final[str] = _get_env("EXTERNAL_MULTIPLAYER_URL", "").rstrip(
+    "/"
+)
 EXTERNAL_MULTIPLAYER_TOKEN: Final[str] = _get_env("EXTERNAL_MULTIPLAYER_TOKEN", "")
 EXTERNAL_MULTIPLAYER_TIMEOUT: Final[int] = safe_int(
     _get_env("EXTERNAL_MULTIPLAYER_TIMEOUT"), 240
