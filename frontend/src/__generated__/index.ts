@@ -1,3 +1,8 @@
+export type { CreateMultiplayerSessionRequest } from './models/CreateMultiplayerSessionRequest';
+export type { MultiplayerLaunchSchema } from './models/MultiplayerLaunchSchema';
+export type { MultiplayerParticipantSchema } from './models/MultiplayerParticipantSchema';
+export type { MultiplayerSessionListSchema } from './models/MultiplayerSessionListSchema';
+export type { MultiplayerSessionSchema } from './models/MultiplayerSessionSchema';
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */

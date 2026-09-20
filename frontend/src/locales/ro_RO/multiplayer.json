@@ -1,0 +1,12 @@
+{
+  "action-failed": "Acțiunea multiplayer a eșuat",
+  "create-session": "Creează sesiune",
+  "join": "Alătură-te",
+  "leave": "Părăsește",
+  "no-open-sessions": "Nu există sesiuni deschise",
+  "open-player": "Deschide jucătorul",
+  "player-count": "{current} din {max} jucători",
+  "popup-blocked": "Permite ferestrele pop-up pentru a deschide jucătorul",
+  "session-name": "Numele sesiunii",
+  "sessions": "Sesiuni multiplayer"
+}

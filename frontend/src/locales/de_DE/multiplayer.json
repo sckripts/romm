@@ -1,0 +1,12 @@
+{
+  "action-failed": "Mehrspieleraktion fehlgeschlagen",
+  "create-session": "Sitzung erstellen",
+  "join": "Beitreten",
+  "leave": "Verlassen",
+  "no-open-sessions": "Keine offenen Sitzungen",
+  "open-player": "Spieler öffnen",
+  "player-count": "{current} von {max} Spielern",
+  "popup-blocked": "Pop-ups zulassen, um den Spieler zu öffnen",
+  "session-name": "Sitzungsname",
+  "sessions": "Mehrspielersitzungen"
+}

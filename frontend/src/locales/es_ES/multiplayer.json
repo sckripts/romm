@@ -1,0 +1,12 @@
+{
+  "action-failed": "La acción multijugador falló",
+  "create-session": "Crear sesión",
+  "join": "Unirse",
+  "leave": "Salir",
+  "no-open-sessions": "No hay sesiones abiertas",
+  "open-player": "Abrir jugador",
+  "player-count": "{current} de {max} jugadores",
+  "popup-blocked": "Permite ventanas emergentes para abrir el jugador",
+  "session-name": "Nombre de la sesión",
+  "sessions": "Sesiones multijugador"
+}

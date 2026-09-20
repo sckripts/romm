@@ -19,6 +19,7 @@ import AchievementsTab from "@/v2/components/GameDetails/AchievementsTab.vue";
 import CoverColumn from "@/v2/components/GameDetails/CoverColumn.vue";
 import FilesTab from "@/v2/components/GameDetails/FilesTab/FilesTab.vue";
 import GameHeader from "@/v2/components/GameDetails/GameHeader.vue";
+import MultiplayerSessions from "@/v2/components/GameDetails/MultiplayerSessions.vue";
 import type { InfoGridSection } from "@/v2/components/GameDetails/InfoGrid.vue";
 import MediaTab from "@/v2/components/GameDetails/MediaTab.vue";
 import MetadataTab from "@/v2/components/GameDetails/MetadataTab.vue";
@@ -287,6 +288,8 @@ const tabs = computed<RTabNavItem[]>(() => [
           :languages="languages"
           :tags="tags"
         />
+
+        <MultiplayerSessions :rom="currentRom" />
 
         <RTabNav v-model="tab" :items="tabs" class="r-v2-det__tabs" />
 
