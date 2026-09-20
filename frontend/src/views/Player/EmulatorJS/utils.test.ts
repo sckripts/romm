@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { installEJSDefaultOptionsTrap } from "./utils";
+import { createSaveSyncTracker, installEJSDefaultOptionsTrap } from "./utils";
 
 const STORAGE_KEY = "ejs-7-n64-Test Game-settings";
 
@@ -131,5 +131,54 @@ describe("installEJSDefaultOptionsTrap", () => {
     const patched = emulator.preGetSetting;
     window.EJS_emulator = emulator;
     expect(emulator.preGetSetting).toBe(patched);
+  });
+});
+
+describe("createSaveSyncTracker", () => {
+  const bytes = (...values: number[]) => new Uint8Array(values);
+  const server = bytes(9, 9);
+  const a = bytes(1, 2, 3);
+  const b = bytes(4, 5, 6);
+
+  it("uploads the first completed flush whose bytes changed", () => {
+    const tracker = createSaveSyncTracker();
+    tracker.seed(server);
+    expect(tracker.shouldUpload(a)).toBe(true);
+  });
+
+  it("uploads nothing while the save is unchanged from the last upload", () => {
+    const tracker = createSaveSyncTracker();
+    tracker.seed(server);
+    expect(tracker.shouldUpload(bytes(9, 9))).toBe(false);
+    expect(tracker.shouldUpload(a)).toBe(true);
+    tracker.markUploaded(a);
+    expect(tracker.shouldUpload(bytes(1, 2, 3))).toBe(false);
+  });
+
+  it("offers each changed value until one is marked uploaded", () => {
+    const tracker = createSaveSyncTracker();
+    tracker.seed(null);
+    expect(tracker.shouldUpload(a)).toBe(true);
+    expect(tracker.shouldUpload(b)).toBe(true);
+    tracker.markUploaded(b);
+    expect(tracker.shouldUpload(bytes(4, 5, 6))).toBe(false);
+  });
+
+  it("re-offers a save whose upload failed", () => {
+    const tracker = createSaveSyncTracker();
+    tracker.seed(server);
+    expect(tracker.shouldUpload(a)).toBe(true);
+    expect(tracker.shouldUpload(bytes(1, 2, 3))).toBe(true);
+  });
+
+  it("snapshots tracked bytes instead of retaining a mutable view", () => {
+    const tracker = createSaveSyncTracker();
+    const mutable = bytes(1, 2, 3);
+    tracker.seed(mutable);
+    mutable[0] = 9;
+    expect(tracker.shouldUpload(mutable)).toBe(true);
+    tracker.markUploaded(mutable);
+    mutable[1] = 8;
+    expect(tracker.shouldUpload(mutable)).toBe(true);
   });
 });
