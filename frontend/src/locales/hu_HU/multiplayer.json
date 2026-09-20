@@ -1,12 +1,13 @@
 {
   "action-failed": "A többjátékos művelet sikertelen",
+  "controller": "Kontroller {number}",
   "create-session": "Munkamenet létrehozása",
   "join": "Csatlakozás",
   "leave": "Kilépés",
   "no-open-sessions": "Nincsenek nyitott munkamenetek",
   "open-player": "Játékos megnyitása",
   "player-count": "{current}/{max} játékos",
-  "popup-blocked": "Engedélyezze a felugró ablakokat a játékos megnyitásához",
+  "players": "Játékosok",
   "session-name": "Munkamenet neve",
   "sessions": "Többjátékos munkamenetek"
 }

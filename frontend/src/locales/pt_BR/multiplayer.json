@@ -1,12 +1,13 @@
 {
   "action-failed": "Falha na ação multijogador",
+  "controller": "Controle {number}",
   "create-session": "Criar sessão",
   "join": "Entrar",
   "leave": "Sair",
   "no-open-sessions": "Nenhuma sessão aberta",
   "open-player": "Abrir jogador",
   "player-count": "{current} de {max} jogadores",
-  "popup-blocked": "Permita pop-ups para abrir o jogador",
+  "players": "Jogadores",
   "session-name": "Nome da sessão",
   "sessions": "Sessões multijogador"
 }

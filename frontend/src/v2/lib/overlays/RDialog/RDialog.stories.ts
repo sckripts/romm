@@ -14,6 +14,7 @@ const meta: Meta<typeof RDialog> = {
     height: { control: "text" },
     scrollContent: { control: "boolean" },
     persistent: { control: "boolean" },
+    fullscreen: { control: "boolean" },
     fullscreenOnMobile: { control: "boolean" },
   },
 };
@@ -23,7 +24,7 @@ export default meta;
 type Story = StoryObj<typeof RDialog>;
 
 export const Basic: Story = {
-  args: { width: "420", icon: "mdi-information" },
+  args: { width: 420, icon: "mdi-information" },
   render: (args) => ({
     components: { RDialog, RBtn },
     setup() {
@@ -56,7 +57,7 @@ export const Basic: Story = {
 // RProgressCircular. These stories demonstrate the recipe.
 export const Loading: Story = {
   name: "Loading (composed)",
-  args: { width: "420", height: "240", icon: "mdi-loading" },
+  args: { width: 420, height: 240, icon: "mdi-loading" },
   render: (args) => ({
     components: { RDialog, RBtn, RProgressCircular },
     setup() {
@@ -83,7 +84,7 @@ export const Loading: Story = {
 
 export const EmptyState: Story = {
   name: "Empty state (composed)",
-  args: { width: "420", height: "320", icon: "mdi-search-web" },
+  args: { width: 420, height: 320, icon: "mdi-search-web" },
   render: (args) => ({
     components: { RDialog, RBtn, REmptyState },
     setup() {
@@ -112,7 +113,7 @@ export const EmptyState: Story = {
 };
 
 export const WithToolbarAndFooter: Story = {
-  args: { width: "520", icon: "mdi-pencil" },
+  args: { width: 520, icon: "mdi-pencil" },
   render: (args) => ({
     components: { RDialog, RBtn },
     setup() {
@@ -135,6 +136,29 @@ export const WithToolbarAndFooter: Story = {
             <div style="flex:1" />
             <RBtn color="primary" @click="open = false">Save</RBtn>
           </template>
+        </RDialog>
+      </div>
+    `,
+  }),
+};
+
+export const Fullscreen: Story = {
+  args: { fullscreen: true, icon: "mdi-controller" },
+  render: (args) => ({
+    components: { RDialog, RBtn },
+    setup() {
+      const open = ref(false);
+      return { args, open };
+    },
+    template: `
+      <div class="r-v2 r-v2-dark" style="padding: 48px; background: #07070f; min-height: 300px;">
+        <RBtn @click="open = true">Open fullscreen dialog</RBtn>
+        <RDialog v-bind="args" v-model="open">
+          <template #header><span>Streaming player</span></template>
+          <template #content>
+            <div style="flex:1;display:grid;place-items:center;background:#000">Player surface</div>
+          </template>
+          <template #footer><span>Player controls</span></template>
         </RDialog>
       </div>
     `,

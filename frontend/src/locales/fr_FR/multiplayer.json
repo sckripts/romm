@@ -1,12 +1,13 @@
 {
   "action-failed": "Échec de l’action multijoueur",
+  "controller": "Manette {number}",
   "create-session": "Créer une session",
   "join": "Rejoindre",
   "leave": "Quitter",
   "no-open-sessions": "Aucune session ouverte",
   "open-player": "Ouvrir le lecteur",
   "player-count": "{current} joueurs sur {max}",
-  "popup-blocked": "Autorisez les fenêtres pop-up pour ouvrir le lecteur",
+  "players": "Joueurs",
   "session-name": "Nom de la session",
   "sessions": "Sessions multijoueur"
 }

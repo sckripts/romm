@@ -1,12 +1,13 @@
 {
   "action-failed": "多人游戏操作失败",
+  "controller": "控制器 {number}",
   "create-session": "创建会话",
   "join": "加入",
   "leave": "离开",
   "no-open-sessions": "没有开放的会话",
   "open-player": "打开玩家",
   "player-count": "{current}/{max} 位玩家",
-  "popup-blocked": "请允许弹出窗口以打开玩家",
+  "players": "玩家",
   "session-name": "会话名称",
   "sessions": "多人游戏会话"
 }

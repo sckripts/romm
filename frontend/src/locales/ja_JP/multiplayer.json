@@ -1,12 +1,13 @@
 {
   "action-failed": "マルチプレイヤー操作に失敗しました",
+  "controller": "コントローラー {number}",
   "create-session": "セッションを作成",
   "join": "参加",
   "leave": "退出",
   "no-open-sessions": "開いているセッションはありません",
   "open-player": "プレイヤーを開く",
   "player-count": "{current}/{max}人",
-  "popup-blocked": "プレイヤーを開くにはポップアップを許可してください",
+  "players": "プレイヤー",
   "session-name": "セッション名",
   "sessions": "マルチプレイヤーセッション"
 }

@@ -1,12 +1,13 @@
 {
   "action-failed": "멀티플레이 작업에 실패했습니다",
+  "controller": "컨트롤러 {number}",
   "create-session": "세션 만들기",
   "join": "참가",
   "leave": "나가기",
   "no-open-sessions": "열린 세션이 없습니다",
   "open-player": "플레이어 열기",
   "player-count": "{max}명 중 {current}명",
-  "popup-blocked": "플레이어를 열려면 팝업을 허용하세요",
+  "players": "플레이어",
   "session-name": "세션 이름",
   "sessions": "멀티플레이 세션"
 }

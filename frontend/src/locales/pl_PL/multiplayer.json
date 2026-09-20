@@ -1,12 +1,13 @@
 {
   "action-failed": "Akcja gry wieloosobowej nie powiodła się",
+  "controller": "Kontroler {number}",
   "create-session": "Utwórz sesję",
   "join": "Dołącz",
   "leave": "Opuść",
   "no-open-sessions": "Brak otwartych sesji",
   "open-player": "Otwórz gracza",
   "player-count": "{current} z {max} graczy",
-  "popup-blocked": "Zezwól na wyskakujące okna, aby otworzyć gracza",
+  "players": "Gracze",
   "session-name": "Nazwa sesji",
   "sessions": "Sesje wieloosobowe"
 }

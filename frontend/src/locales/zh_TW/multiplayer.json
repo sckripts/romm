@@ -1,12 +1,13 @@
 {
   "action-failed": "多人遊戲操作失敗",
+  "controller": "控制器 {number}",
   "create-session": "建立工作階段",
   "join": "加入",
   "leave": "離開",
   "no-open-sessions": "沒有開放的工作階段",
   "open-player": "開啟玩家",
   "player-count": "{current}/{max} 位玩家",
-  "popup-blocked": "請允許彈出式視窗以開啟玩家",
+  "players": "玩家",
   "session-name": "工作階段名稱",
   "sessions": "多人遊戲工作階段"
 }

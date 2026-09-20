@@ -35,6 +35,9 @@ const props = withDefaults(
     height?: number | string;
     /** Block close-on-scrim-click / close-on-Escape. */
     persistent?: boolean;
+    /** Fill the viewport with the dialog panel. Intended for immersive
+     *  in-app surfaces such as streaming players. */
+    fullscreen?: boolean;
     /** On `sm-and-down`, dock the panel as a full-width bottom sheet
      *  instead of a centred card. Default on — opt out for surfaces that
      *  must stay a compact floating card on phones. */
@@ -52,6 +55,7 @@ const props = withDefaults(
     width: "auto",
     height: "auto",
     persistent: false,
+    fullscreen: false,
     fullscreenOnMobile: true,
     fullHeightOnMobile: false,
   },
@@ -190,7 +194,8 @@ const panelStyle = computed(() => {
         v-bind="$attrs"
         class="r-dialog"
         :class="{
-          'r-dialog--fs-mobile': fullscreenOnMobile,
+          'r-dialog--fullscreen': fullscreen,
+          'r-dialog--fs-mobile': fullscreenOnMobile && !fullscreen,
           'r-dialog--full-height': fullHeightOnMobile,
         }"
         role="presentation"
@@ -297,6 +302,25 @@ const panelStyle = computed(() => {
   color: var(--r-color-fg);
   max-width: calc(100vw - 32px);
   max-height: calc(100vh - 32px);
+}
+
+/* Edge-to-edge mode for immersive surfaces. Keep it in the dialog primitive
+   so focus management, Escape handling, stacking and scroll locking remain
+   consistent with other overlays. */
+.r-dialog--fullscreen {
+  padding: 0;
+}
+.r-dialog--fullscreen .r-dialog__panel {
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-width: 100vw !important;
+  min-height: 0 !important;
+  max-height: 100vh !important;
+  max-height: 100dvh !important;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 0;
 }
 
 /* ── Mobile bottom sheet (sm-and-down) ──────────────────────────────
