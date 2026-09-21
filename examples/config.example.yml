@@ -164,6 +164,7 @@
 #   cache_limit: null # Cache limit per ROM (in bytes)
 #   disable_batch_bootup: false
 #   disable_auto_unload: false
+#   auto_save_sync: false # Upload changed in-game saves after EmulatorJS writes them
 #   settings:
 #     parallel_n64: # Use the exact core name
 #       vsync: disabled

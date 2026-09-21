@@ -135,6 +135,39 @@ export async function saveSave({
   return null;
 }
 
+// Per completed EmulatorJS "saveSaveFiles" flush, whether SRAM differs from
+// the last version accepted by RomM. Failed uploads remain eligible to retry.
+export function createSaveSyncTracker() {
+  let lastUploaded: Uint8Array | null = null;
+  return {
+    seed(save: Uint8Array | null) {
+      lastUploaded = copyBytes(save);
+    },
+    shouldUpload(save: Uint8Array): boolean {
+      return !bytesEqual(save, lastUploaded);
+    },
+    markUploaded(save: Uint8Array) {
+      lastUploaded = copyBytes(save);
+    },
+  };
+}
+
+function copyBytes(value: Uint8Array | null): Uint8Array | null {
+  return value ? new Uint8Array(value) : null;
+}
+
+function bytesEqual(a: Uint8Array | null, b: Uint8Array | null): boolean {
+  if (!a || !b) return a === b;
+  if (a.byteLength !== b.byteLength) return false;
+  return a.every((byte, i) => byte === b[i]);
+}
+
+export function toArrayBuffer(view: Uint8Array): ArrayBuffer {
+  const copy = new Uint8Array(view.byteLength);
+  copy.set(view);
+  return copy.buffer;
+}
+
 export function loadEmulatorJSSave(save: Uint8Array) {
   const FS = window.EJS_emulator.gameManager.FS;
   const path = window.EJS_emulator.gameManager.getSaveFilePath();

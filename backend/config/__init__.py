@@ -327,6 +327,18 @@ STREAMING_SAVE_TIMEOUT: Final[int] = safe_int(
     _get_env("STREAMING_SAVE_TIMEOUT"), 45
 )  # 45 seconds
 
+# EXTERNAL MULTIPLAYER
+EXTERNAL_MULTIPLAYER_ENABLED: Final[bool] = safe_str_to_bool(
+    _get_env("EXTERNAL_MULTIPLAYER_ENABLED")
+)
+EXTERNAL_MULTIPLAYER_URL: Final[str] = _get_env("EXTERNAL_MULTIPLAYER_URL", "").rstrip(
+    "/"
+)
+EXTERNAL_MULTIPLAYER_TOKEN: Final[str] = _get_env("EXTERNAL_MULTIPLAYER_TOKEN", "")
+EXTERNAL_MULTIPLAYER_TIMEOUT: Final[int] = safe_int(
+    _get_env("EXTERNAL_MULTIPLAYER_TIMEOUT"), 240
+)
+
 # SENTRY
 SENTRY_DSN: Final[str | None] = _get_env("SENTRY_DSN")
 

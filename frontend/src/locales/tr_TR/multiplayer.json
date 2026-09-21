@@ -1,0 +1,13 @@
+{
+  "action-failed": "Çok oyunculu işlem başarısız oldu",
+  "controller": "Kontrolcü {number}",
+  "create-session": "Oturum oluştur",
+  "join": "Katıl",
+  "leave": "Ayrıl",
+  "no-open-sessions": "Açık oturum yok",
+  "open-player": "Oyuncuyu aç",
+  "player-count": "{max} oyuncudan {current}",
+  "players": "Oyuncular",
+  "session-name": "Oturum adı",
+  "sessions": "Çok oyunculu oturumlar"
+}

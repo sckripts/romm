@@ -1,0 +1,13 @@
+{
+  "action-failed": "Multiplayer action failed",
+  "controller": "Controller {number}",
+  "create-session": "Create session",
+  "join": "Join",
+  "leave": "Leave",
+  "no-open-sessions": "No open sessions",
+  "open-player": "Open player",
+  "player-count": "{current} of {max} players",
+  "players": "Players",
+  "session-name": "Session name",
+  "sessions": "Multiplayer sessions"
+}

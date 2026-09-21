@@ -1,0 +1,13 @@
+{
+  "action-failed": "Akce hry pro více hráčů se nezdařila",
+  "controller": "Ovladač {number}",
+  "create-session": "Vytvořit relaci",
+  "join": "Připojit se",
+  "leave": "Opustit",
+  "no-open-sessions": "Žádné otevřené relace",
+  "open-player": "Otevřít přehrávač",
+  "player-count": "{current} z {max} hráčů",
+  "players": "Hráči",
+  "session-name": "Název relace",
+  "sessions": "Relace pro více hráčů"
+}

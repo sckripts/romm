@@ -1,0 +1,13 @@
+{
+  "action-failed": "Не удалось выполнить действие в сетевой игре",
+  "controller": "Контроллер {number}",
+  "create-session": "Создать сеанс",
+  "join": "Присоединиться",
+  "leave": "Покинуть",
+  "no-open-sessions": "Нет открытых сеансов",
+  "open-player": "Открыть игрока",
+  "player-count": "{current} из {max} игроков",
+  "players": "Игроки",
+  "session-name": "Название сеанса",
+  "sessions": "Сетевые сеансы"
+}

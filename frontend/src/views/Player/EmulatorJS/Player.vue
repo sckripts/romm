@@ -34,9 +34,12 @@ import {
   createQuickLoadButton,
   createSaveQuitButton,
   createExitEmulationButton,
+  createSaveSyncTracker,
+  toArrayBuffer,
 } from "./utils";
 
 const INVALID_CHARS_REGEX = /[#<$+%>!`&*'|{}/\\?"=@:^\r\n]/gi;
+const AUTO_SAVE_SYNC_INTERVAL_MS = 20_000;
 
 const authStore = storeAuth();
 const romsStore = storeRoms();
@@ -180,6 +183,7 @@ const {
   EJS_DISABLE_BATCH_BOOTUP,
   EJS_NETPLAY_ICE_SERVERS,
   EJS_NETPLAY_ENABLED,
+  EJS_ENABLE_AUTO_SAVE_SYNC,
 } = configStore.config;
 // Full origin (with scheme)
 window.EJS_netplayServer = EJS_NETPLAY_ENABLED ? window.location.origin : "";
@@ -230,6 +234,9 @@ onMounted(() => {
 });
 
 onBeforeUnmount(async () => {
+  if (autoSaveSyncTimer !== null) window.clearInterval(autoSaveSyncTimer);
+  autoSaveSyncTimer = null;
+  autoSaveSyncEmulator = null;
   emitter?.off("saveSelected", loadSave);
   emitter?.off("stateSelected", loadState);
   window.EJS_emulator?.callEvent("exit");
@@ -276,6 +283,54 @@ async function waitForGameManager(timeoutMs = 5000): Promise<boolean> {
 // Settle window after boot before applying a state. Some cores need a few
 // frames rendered before loadState takes cleanly.
 const STATE_APPLY_SETTLE_MS = 500;
+
+// Upload changed cartridge-style SRAM after EmulatorJS completes a flush. The
+// subscription cannot be removed, so ownership is revoked during unmount.
+let autoSaveSyncEmulator: object | null = null;
+let autoSaveSyncTimer: number | null = null;
+function installAutoSaveSync() {
+  const emulator = window.EJS_emulator;
+  if (!emulator?.gameManager || autoSaveSyncEmulator === emulator) return;
+  autoSaveSyncEmulator = emulator;
+  const tracker = createSaveSyncTracker();
+  tracker.seed(emulator.gameManager.getSaveFile(false));
+  let uploading = false;
+  emulator.on("saveSaveFiles", async (saveFile: Uint8Array | null) => {
+    if (autoSaveSyncEmulator !== emulator || uploading || !saveFile?.byteLength)
+      return;
+    if (!tracker.shouldUpload(saveFile)) return;
+    uploading = true;
+    try {
+      const save = await saveSave({
+        rom: romRef.value,
+        save: saveRef.value,
+        saveFile: toArrayBuffer(saveFile),
+        deviceId: deviceIDRef.value,
+      });
+      if (save) {
+        tracker.markUploaded(saveFile);
+        saveRef.value = save;
+        romsStore.update(romRef.value);
+        displayMessage("Save synced with server", {
+          duration: 3000,
+          icon: "mdi-cloud-sync",
+          className: "msg-success",
+        });
+      }
+    } catch (error) {
+      console.error("Periodic save sync failed", error);
+    } finally {
+      uploading = false;
+    }
+  });
+  // EmulatorJS 4.2.3 lacks EJS_fixedSaveInterval, so drive its pinned API.
+  // Its separate five-minute UI timer may still run but is harmless.
+  autoSaveSyncTimer = window.setInterval(() => {
+    if (autoSaveSyncEmulator === emulator && emulator.started) {
+      emulator.gameManager.saveSaveFiles();
+    }
+  }, AUTO_SAVE_SYNC_INTERVAL_MS);
+}
 
 // Saves management
 async function loadSave(save: SaveSchema) {
@@ -441,6 +496,13 @@ window.EJS_onGameStart = async () => {
         await loadState(props.state);
       } else if (props.save) {
         await loadSave(props.save);
+      }
+      if (EJS_ENABLE_AUTO_SAVE_SYNC) {
+        try {
+          installAutoSaveSync();
+        } catch (error) {
+          console.error("Failed to enable periodic save sync", error);
+        }
       }
     }
 

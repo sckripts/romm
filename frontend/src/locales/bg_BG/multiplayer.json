@@ -1,0 +1,13 @@
+{
+  "action-failed": "Действието за мултиплейър е неуспешно",
+  "controller": "Контролер {number}",
+  "create-session": "Създаване на сесия",
+  "join": "Присъединяване",
+  "leave": "Напускане",
+  "no-open-sessions": "Няма отворени сесии",
+  "open-player": "Отваряне на играча",
+  "player-count": "{current} от {max} играчи",
+  "players": "Играчи",
+  "session-name": "Име на сесията",
+  "sessions": "Мултиплейър сесии"
+}
