@@ -5,6 +5,11 @@
 // tabs, tab panel) stacked in a flex-1 column on the right. Thin
 // orchestrator — data + tab state live here, every visual piece is a
 // sub-component under components/GameDetails/.
+import { RTabNav, type RTabNavItem } from "@v2/lib";
+import { storeToRefs } from "pinia";
+import { computed, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
+import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import type { IGDBRelatedGame } from "@/__generated__";
 import romApi from "@/services/api/rom";
 import storeAuth from "@/stores/auth";
@@ -27,11 +32,6 @@ import { usePageTitle } from "@/v2/composables/usePageTitle";
 import { useRightStickScroll } from "@/v2/composables/useRightStickScroll";
 import { useWebpSupport } from "@/v2/composables/useWebpSupport";
 import { isRomVerified } from "@/v2/utils/romVerification";
-import { RTabNav, type RTabNavItem } from "@v2/lib";
-import { storeToRefs } from "pinia";
-import { computed, ref, watch } from "vue";
-import { useI18n } from "vue-i18n";
-import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
 const router = useRouter();
